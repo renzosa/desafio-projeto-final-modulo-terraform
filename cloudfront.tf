@@ -61,7 +61,10 @@ resource "aws_cloudfront_distribution" "frontend_distribution" {
 
   viewer_certificate {
     cloudfront_default_certificate = true
+    minimum_protocol_version       = "TLSv1.2_2021"
+    ssl_support_method             = "sni-only"
   }
+
 }
 
 resource "aws_cloudfront_origin_access_control" "frontend_oac" {
