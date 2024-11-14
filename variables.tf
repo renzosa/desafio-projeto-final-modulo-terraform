@@ -4,68 +4,52 @@ variable "main_vpc_cidr" {
   default     = "10.0.0.0/16"
 }
 
-variable "zone_a" {
-  description = "Availability Zone A"
+variable "main_vpc_name" {
+  description = "Nome da VPC"
   type        = string
-  default     = "us-east-1a"
-}
-variable "zone_b" {
-  description = "Availability Zone B"
-  type        = string
-  default     = "us-east-1b"
-}
-variable "zone_c" {
-  description = "Availability Zone C"
-  type        = string
-  default     = "us-east-1c"
+  default     = "tf-main-vpc"
 }
 
-variable "public_a_subnet_cidr" {
-  description = "CIDR Subnet Publica A"
-  type        = string
-  default     = "10.0.1.0/16"
-}
-variable "public_b_subnet_cidr" {
-  description = "CIDR Subnet Publica B"
-  type        = string
-  default     = "10.0.2.0/16"
-}
-variable "public_c_subnet_cidr" {
-  description = "CIDR Subnet Publica C"
-  type        = string
-  default     = "10.0.3.0/16"
+variable "number_of_zones" {
+  description = "Número de instâncias"
+  type        = number
+  default     = 3
 }
 
-variable "app_private_a_subnet_cidr" {
-  description = "CIDR Subnet de Aplicação Privada A"
-  type        = string
-  default     = "10.0.4.0/16"
-}
-variable "app_private_b_subnet_cidr" {
-  description = "CIDR Subnet de Aplicação Privada B"
-  type        = string
-  default     = "10.0.5.0/16"
-}
-variable "app_private_c_subnet_cidr" {
-  description = "CIDR Subnet de Aplicação Privada C"
-  type        = string
-  default     = "10.0.6.0/16"
+variable "availability_zones" {
+  description = "Availability Zones"
+  type        = list(string)
+  default     = ["us-east-1a", "us-east-1b", "us-east-1c"]
 }
 
-variable "data_private_a_subnet_cidr" {
-  description = "CIDR Subnet de Banco de Dados A"
-  type        = string
-  default     = "10.0.7.0/16"
+variable "availability_zones_names" {
+  description = "Availability Zones Names"
+  type        = list(string)
+  default     = ["a", "b", "c"]
 }
-variable "data_private_b_subnet_cidr" {
-  description = "CIDR Subnet de Banco de Dados B"
-  type        = string
-  default     = "10.0.8.0/16"
+
+variable "public_subnet_cidrs" {
+  description = "CIDR Subnets Publicas"
+  type        = list(string)
+  default     = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
 }
-variable "data_private_c_subnet_cidr" {
-  description = "CIDR Subnet de Banco de Dados C"
+
+variable "private_app_subnet_cidrs" {
+  description = "CIDR Subnets Privadas de Aplicação"
+  type        = list(string)
+  default     = ["10.0.4.0/24", "10.0.5.0/24", "10.0.6.0/24"]
+}
+
+variable "private_data_subnet_cidrs" {
+  description = "CIDR Subnets Privadas de Dados"
+  type        = list(string)
+  default     = ["10.0.7.0/24", "10.0.8.0/24", "10.0.9.0/24"]
+}
+
+variable "buckets_name" {
+  description = "Nome base dos Buckets"
   type        = string
-  default     = "10.0.9.0/16"
+  default     = "tf-bucket-renzo-santander-coders-2024-by-ada-for"
 }
 
 variable "database_username" {
@@ -73,6 +57,7 @@ variable "database_username" {
   type        = string
   default     = "dbadmin"
 }
+
 variable "database_password" {
   description = "Senha para o Banco de Dados"
   type        = string
